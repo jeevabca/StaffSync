@@ -1,0 +1,110 @@
+.otp-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  }
+  
+  .otp-card {
+    width: 400px;
+    padding: 40px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  .otp-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .otp-header h1 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 28px;
+  }
+  
+  .otp-header p {
+    color: #666;
+    font-size: 16px;
+  }
+  
+  .otp-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .otp-inputs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+  
+  .otp-input {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .otp-input:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+    outline: none;
+  }
+  
+  .verify-button {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 20px;
+  }
+  
+  .verify-button:hover {
+    background-color: #3a7bc8;
+  }
+  
+  .verify-button:disabled {
+    background-color: #a0c3e8;
+    cursor: not-allowed;
+  }
+  
+  .resend-section {
+    text-align: center;
+  }
+  
+  .resend-button {
+    background: none;
+    border: none;
+    color: #4a90e2;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: underline;
+    padding: 0;
+  }
+  
+  .resend-button.disabled {
+    color: #999;
+    cursor: not-allowed;
+    text-decoration: none;
+  }
+  
+  .error-message {
+    background-color: #ffebee;
+    color: #d32f2f;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
