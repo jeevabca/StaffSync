@@ -1,5 +1,6 @@
 import axios from "axios";
 import { ENDPOINT } from "../constant/Endpoint";
+
 export const Userlogin = async (request) => {
 try {
     let endpoint = ENDPOINT.LOGIN;
@@ -18,6 +19,13 @@ export const OtpVerify = async (request) => {
     console.log(e);
   }
 };
+export const SignUp = async (request) => {
+    let endpoint = ENDPOINT.SIGNUP;
+    let res = await axios.post(endpoint, request);
+    console.log("from auth",JSON.stringify(res.data));
+    return res;
+};
+
 
 // ============================= Employee ==================================
 export const Employeegetall = async () => {
@@ -82,3 +90,36 @@ export const Pincode = async (pin) => {
     console.log();
   }
 }
+
+// =============================== Leave =========================================
+
+export const Leavegetall = async () => {
+  try {
+    let endpoint = ENDPOINT.LEAVE_GET_ALL;
+    let res = await axios.post(endpoint);
+    return res;
+
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const LeaveCreate = async (request) => {
+  try {
+    let endpoint = ENDPOINT.LEAVE_CREATE;
+    let res = await axios.post(endpoint, request);
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const LeaveUpdate = async (request) => {
+  try {
+    let endpoint = ENDPOINT.LEAVE_UPDATE;
+    let res = await axios.post(endpoint, request);
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+} 

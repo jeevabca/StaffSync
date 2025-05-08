@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Signup.css';
+import { Role } from '../constant/constant';
+import { SignUp } from '../Api/auth';
+import { useMutation } from '@tanstack/react-query';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +12,7 @@ const Signup = () => {
     email: '',
     password: '',
     confirmPassword: '',
+    role: Role.None,
   });
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -21,7 +25,25 @@ const Signup = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const signupMutation = useMutation({
+    mutationFn: (userData) => SignUp(userData),
+    onSuccess: (data) => {
+      console.log('Registration successful:', data);
+      if (data.status) {
+        alert('Account created successfully! Please login.');
+        navigate('/login');
+      } else {
+        console.log('Registration failed:', data);
+        setError(data.message || 'Registration failed. Please try again.');
+      }
+    },
+    onError: (error) => {
+      console.error('Registration failed:', error);
+      setError('Registration failed. Please try again.');
+    },  
+  })
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     // Basic validation
@@ -35,12 +57,14 @@ const Signup = () => {
       return;
     }
     
-    // Here you would typically make an API call to register the user
-    console.log('Registration attempt with:', formData);
-    
-    // Simulate successful registration
-    alert('Account created successfully! Please login.');
-    navigate('/login');
+    const userData = {
+      name: formData.firstName + formData.lastName ,
+      email: formData.email,
+      password: formData.password,
+      role: Number(formData.role)
+    };
+
+    signupMutation.mutate(userData);
   };
 
   return (
@@ -94,6 +118,24 @@ const Signup = () => {
               required
             />
           </div>
+
+          <div className="form-group">
+            <label htmlFor="role">Role</label>
+            <select
+              id="role"
+              name="role"
+              value={formData.role}
+              onChange={handleChange}
+              required
+            >
+              {Object.entries(Role).map(([roleName, roleValue]) => (
+                <option key={roleValue} value={roleValue}>
+                  {roleName}
+                </option>
+              ))}
+            </select>
+          </div>
+          
           
           <div className="form-group">
             <label htmlFor="password">Password</label>
@@ -121,13 +163,13 @@ const Signup = () => {
             />
           </div>
           
-          <button type="submit" className="signup-button">Create Account</button>
+          <button type="submit" className="signup-button" disabled={signupMutation.isPending}> {signupMutation.isPending ? 'Creating Account...' : 'Create Account'}</button>
           
           <div className="login-link">
             <p>Already have an account? <a href="/login">Login</a></p>
           </div>
         </form>
-      </div>
+      </div>  
     </div>
   );
 };

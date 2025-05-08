@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Dashboard.css';
 import Employees from './Employees';
+import LeaveTab from './LeaveTab'
 
 // Icons (you may want to use a library like react-icons instead)
 const DashboardIcon = () => <span className="icon">📊</span>;
@@ -55,8 +56,8 @@ const Dashboard = () => {
               {!sidebarCollapsed && <span>Employees</span>}
             </li>
             <li 
-              className={activeMenu === 'attendance' ? 'active' : ''} 
-              onClick={() => setActiveMenu('attendance')}
+              className={activeMenu === 'leave' ? 'active' : ''} 
+              onClick={() => setActiveMenu('leave')}
             >
               <LeaveIcon />
               {!sidebarCollapsed && <span>Leave</span>}
@@ -161,12 +162,7 @@ const Dashboard = () => {
           
           {activeMenu === 'employees' && <Employees />}
           
-          {activeMenu === 'attendance' && (
-            <div>
-              <h1>Attendance</h1>
-              <p>Attendance tracking content will appear here.</p>
-            </div>
-          )}
+          {activeMenu === 'leave' && <LeaveTab />}
           
           {activeMenu === 'payroll' && (
             <div>
