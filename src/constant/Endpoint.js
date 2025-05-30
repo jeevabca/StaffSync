@@ -1,4 +1,4 @@
-const BASE_URL = "http://192.168.0.121:8080/api/";
+const BASE_URL = "http://192.168.0.118:8080/api/";
 
 export const ENDPOINT = {
   LOGIN: BASE_URL + "Login/LoginRequest",
@@ -17,4 +17,9 @@ export const ENDPOINT = {
   LEAVE_UPDATE: BASE_URL + "Leave/LeaveUpdate",
   LEAVE_DELETE: BASE_URL + "Leave/DeletLeave",
   EMPLOYEE_LEAVE_DETAILS: BASE_URL + "Leave/EmployeeLeavesDetatils",
+  //Leave Application
+  LEAVE_APP_CREATE: BASE_URL + "LeaveApplication/LeaveApplicationCreate",
+  LEAVE_APP_GET_ALL: BASE_URL + "LeaveApplication/LeaveApplicationGetAll",
+  LEAVE_APP_UPDATE: BASE_URL + "LeaveApplication/LeaveApplicationUpdate",
+  LEAVE_APP_DELETE: BASE_URL + "LeaveApplication/LeaveApplicationRevert",
 };

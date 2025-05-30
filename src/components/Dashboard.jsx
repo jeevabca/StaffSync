@@ -3,12 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/Dashboard.css';
 import Employees from './Employees';
 import LeaveTab from './LeaveTab'
+import LeaveApplication from './LeaveApplication';
 
 // Icons (you may want to use a library like react-icons instead)
 const DashboardIcon = () => <span className="icon">📊</span>;
 const EmployeesIcon = () => <span className="icon">👥</span>;
 const LeaveIcon = () => <span className="icon">📅</span>;
-const PayrollIcon = () => <span className="icon">💰</span>;
+const LeaveApplicationIcon = () => <span className="icon">📝</span>;
 const SettingsIcon = () => <span className="icon">⚙️</span>;
 const LogoutIcon = () => <span className="icon">🚪</span>;
 const UserIcon = () => <span className="icon">👤</span>;
@@ -63,11 +64,11 @@ const Dashboard = () => {
               {!sidebarCollapsed && <span>Leave</span>}
             </li>
             <li 
-              className={activeMenu === 'payroll' ? 'active' : ''} 
-              onClick={() => setActiveMenu('payroll')}
+              className={activeMenu === 'leaveapplication' ? 'active' : ''} 
+              onClick={() => setActiveMenu('leaveapplication')}
             >
-              <PayrollIcon />
-              {!sidebarCollapsed && <span>Payroll</span>}
+              <LeaveApplicationIcon />
+              {!sidebarCollapsed && <span>Leave Application</span>}
             </li>
             <li 
               className={activeMenu === 'settings' ? 'active' : ''} 
@@ -149,7 +150,7 @@ const Dashboard = () => {
                     </div>
                   </div>
                   <div className="activity-item">
-                    <div className="activity-icon">💰</div>
+                    <div className="activity-icon">📝</div>
                     <div className="activity-details">
                       <p className="activity-text">Payroll for June has been processed</p>
                       <p className="activity-time">2 days ago</p>
@@ -164,12 +165,7 @@ const Dashboard = () => {
           
           {activeMenu === 'leave' && <LeaveTab />}
           
-          {activeMenu === 'payroll' && (
-            <div>
-              <h1>Payroll</h1>
-              <p>Payroll management content will appear here.</p>
-            </div>
-          )}
+          {activeMenu === 'leaveapplication' && <LeaveApplication />}
           
           {activeMenu === 'settings' && (
             <div>

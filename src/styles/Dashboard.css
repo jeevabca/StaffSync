@@ -20,7 +20,6 @@
     transition: width 0.3s ease;
     overflow: hidden;
     justify-content: space-between;
-    
   }
   
   .sidebar.collapsed {

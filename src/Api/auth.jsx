@@ -123,3 +123,23 @@ export const LeaveUpdate = async (request) => {
     console.log(error);
   }
 } 
+
+export const LeaveDelete = async (request) => {
+    let endpoint = ENDPOINT.LEAVE_DELETE;
+    let res = await axios.post(endpoint, request);
+    return res;
+}
+
+//=============================Leave Application===========================
+
+export const LeaveAppCreate = async (request) => {
+  let endpoint = ENDPOINT.LEAVE_APP_CREATE;
+  let res = await axios.post(endpoint,request)
+  return res;
+}
+
+export const LeaveAppGetAll = async () => {
+  let endpoint = ENDPOINT.LEAVE_APP_GET_ALL;
+  let res = await axios.post(endpoint)
+  return res;
+}

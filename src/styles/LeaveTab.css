@@ -87,18 +87,20 @@
     color: #333;
   }
 
-  .menu-dots {
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    padding: 10px;
+  .icon-group {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
 
+  .icon-group div {
+    cursor: pointer;
+    padding: 5px;
   }
   
-  .menu-dots:hover {
+  .icon-group div:hover {
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 50%;
-
   }
 
   /* Add these styles to your existing LeaveTab.css file */

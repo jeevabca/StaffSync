@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/LeaveTab.css';
-import { LeaveCreate, Leavegetall, LeaveUpdate } from '../Api/auth';
-import { CreateIcon, edit } from '../constant/constant';
+import { LeaveCreate, Leavegetall, LeaveUpdate ,LeaveDelete} from '../Api/auth';
+import { CreateIcon, deleteIcon, edit } from '../constant/constant';
 
 const LeaveTab = () => {
 
@@ -57,6 +57,24 @@ const LeaveTab = () => {
     setSelectedLeave(leave);
     setShowEditPopup(true);
   }; 
+  
+  const handleDeleteClick = async (leave) => {
+    console.log(leave);
+    
+    try {
+      const data = {
+        id:leave
+      }
+      const res = await LeaveDelete(data);
+      if(res.status === 200) {
+        setLeaveData(prevData => prevData.filter(item => item.id !== leave));
+        await getAllLeave();
+      }
+    }catch (error) {
+      console.log(error);}
+  }
+
+
   const handleCreateLeave = () => {
     setShowPopup(true);
     };
@@ -165,8 +183,19 @@ const LeaveTab = () => {
           <div key={leave.id} className={`leave-card leave-type-${leave.leave_type}`} onClick={() => handleCardClick(leave)}>
             <div className="leave-card-header">
               <h3>{getLeaveTypeName(leave.leave_type)}</h3>
-              <div className='menu-dots' dangerouslySetInnerHTML={{ __html: edit }} />
+              <div className='icon-group'>
+              <div dangerouslySetInnerHTML={{ __html: edit }} onClick={(e) => {
+              e.stopPropagation();
+              handleCardClick(leave);
+            }}/>
+              <div dangerouslySetInnerHTML={{ __html: deleteIcon }}   onClick={(e) => {
+              e.stopPropagation();
+              handleDeleteClick(leave.id);
+            }} />
+              </div>
             </div>
+            
+
             <div className="leave-card-body">
               <div className="leave-info">
                 <span className="leave-label">Available Days:</span>
